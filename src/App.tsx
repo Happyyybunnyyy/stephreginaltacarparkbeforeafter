@@ -3,6 +3,7 @@ import { HeuristicEvaluationItem } from './types';
 import { SummaryCards } from './components/SummaryCards';
 import { HeuristicsTable } from './components/HeuristicsTable';
 import { ComparisonViewer } from './components/ComparisonViewer';
+import { ProblemSolutionNavigator } from './components/ProblemSolutionNavigator';
 import { HeuristicDetailModal } from './components/HeuristicDetailModal';
 import { LegendModal } from './components/LegendModal';
 import {
@@ -13,6 +14,7 @@ import {
   Table as TableIcon,
   Columns,
   Sparkles,
+  MousePointerClick,
 } from 'lucide-react';
 
 export default function App() {
@@ -21,6 +23,7 @@ export default function App() {
   const [isLegendOpen, setIsLegendOpen] = useState(false);
 
   const tableRef = useRef<HTMLDivElement>(null);
+  const navigatorRef = useRef<HTMLDivElement>(null);
   const compareRef = useRef<HTMLDivElement>(null);
 
   const handleSelectHeuristicFromTable = (item: HeuristicEvaluationItem) => {
@@ -29,8 +32,16 @@ export default function App() {
     compareRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleSelectHeuristicFromNavigator = (item: HeuristicEvaluationItem) => {
+    setSelectedHeuristic(item);
+  };
+
   const scrollToTable = () => {
     tableRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToNavigator = () => {
+    navigatorRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToCompare = () => {
@@ -63,6 +74,13 @@ export default function App() {
 
           {/* Quick Nav Links */}
           <div className="flex items-center gap-2">
+            <button
+              onClick={scrollToNavigator}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-indigo-700 bg-indigo-50/80 hover:bg-indigo-100/90 rounded-lg transition cursor-pointer border border-indigo-200"
+            >
+              <MousePointerClick className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Problem & Solutions</span>
+            </button>
             <button
               onClick={scrollToTable}
               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition cursor-pointer"
@@ -143,7 +161,16 @@ export default function App() {
           />
         </div>
 
-        {/* Section 2: Interactive Side-by-Side Comparison Viewer */}
+        {/* Section 2: Areas of Problems vs Improved Solutions (Side-by-Side in Button Form) */}
+        <div ref={navigatorRef} className="scroll-mt-20">
+          <ProblemSolutionNavigator
+            selectedHeuristic={selectedHeuristic}
+            onSelectHeuristic={handleSelectHeuristicFromNavigator}
+            onScrollToCompare={scrollToCompare}
+          />
+        </div>
+
+        {/* Section 3: Interactive Side-by-Side Comparison Viewer */}
         <div ref={compareRef} className="scroll-mt-20 space-y-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
@@ -156,13 +183,14 @@ export default function App() {
                 </h3>
               </div>
               <p className="text-xs text-slate-600 mt-0.5">
-                Test and interact with both versions. Click "Inspect" in the table above to spotlight the corresponding touchpoints.
+                Test and interact with both versions. Click any area button above to spotlight the corresponding touchpoints in real time.
               </p>
             </div>
           </div>
 
           <ComparisonViewer
             selectedHeuristic={selectedHeuristic}
+            onSelectHeuristic={handleSelectHeuristicFromNavigator}
             onClearSelectedHeuristic={() => setSelectedHeuristic(null)}
             onOpenLegend={() => setIsLegendOpen(true)}
           />

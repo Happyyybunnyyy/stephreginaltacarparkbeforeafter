@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { HeuristicEvaluationItem, ViewMode } from '../types';
+import { HEURISTIC_EVALUATION_DATA } from '../data/evaluationData';
 import { BeforeAppView } from './BeforeAppView';
 import { ImprovedAppView } from './ImprovedAppView';
 import {
@@ -13,16 +14,20 @@ import {
   AlertTriangle,
   ArrowRight,
   HelpCircle,
+  X,
+  CheckCircle2,
 } from 'lucide-react';
 
 interface ComparisonViewerProps {
   selectedHeuristic: HeuristicEvaluationItem | null;
+  onSelectHeuristic?: (heuristic: HeuristicEvaluationItem) => void;
   onClearSelectedHeuristic: () => void;
   onOpenLegend: () => void;
 }
 
 export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
   selectedHeuristic,
+  onSelectHeuristic,
   onClearSelectedHeuristic,
   onOpenLegend,
 }) => {
@@ -91,23 +96,80 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
         </div>
       </div>
 
-      {/* Active Heuristic Inspection Banner if selected */}
+      {/* Quick Problem Areas Navigation Bar in Button Form */}
+      <div className="bg-slate-900/95 px-4 py-2 border-b border-slate-800/90 flex items-center gap-2 overflow-x-auto text-xs">
+        <span className="text-slate-400 font-bold text-[11px] uppercase tracking-wider shrink-0 flex items-center gap-1.5">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <span>Area Buttons:</span>
+        </span>
+        <div className="flex items-center gap-1.5 shrink-0">
+          {HEURISTIC_EVALUATION_DATA.map((h) => {
+            const isSelected = selectedHeuristic?.id === h.id;
+            return (
+              <button
+                key={`comp-btn-${h.id}`}
+                onClick={() => {
+                  if (isSelected) {
+                    onClearSelectedHeuristic();
+                  } else {
+                    onSelectHeuristic?.(h);
+                  }
+                }}
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
+                  isSelected
+                    ? 'bg-indigo-600 text-white shadow-xs ring-2 ring-indigo-400/40'
+                    : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700'
+                }`}
+                title={`H${h.number}: ${h.area}\nClick to toggle spotlight in both screens`}
+              >
+                <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-amber-300 animate-pulse' : 'bg-slate-400'}`}></span>
+                <span>H{h.number}</span>
+                <span className="hidden sm:inline text-[11px] opacity-80">{h.area.split(' ')[0]}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Active Heuristic Inspection Banner if selected with Side-by-Side Problem vs Solution */}
       {selectedHeuristic && (
-        <div className="bg-indigo-950/90 border-b border-indigo-800/80 px-4 py-2.5 flex items-center justify-between text-xs text-indigo-200">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="px-2 py-0.5 rounded bg-indigo-500 text-white font-bold font-mono">
-              Heuristic #{selectedHeuristic.number}
-            </span>
-            <span className="font-bold text-white text-sm">{selectedHeuristic.area}:</span>
-            <span className="text-indigo-200">{selectedHeuristic.problemTitle}</span>
+        <div className="bg-indigo-950/95 border-b border-indigo-800/80 px-4 py-3 text-xs text-indigo-200">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-0.5 rounded bg-indigo-500 text-white font-bold font-mono text-[11px]">
+                Heuristic #{selectedHeuristic.number} Focused
+              </span>
+              <span className="font-extrabold text-white text-sm">{selectedHeuristic.area}</span>
+              <span className="text-indigo-300 text-[11px]">({selectedHeuristic.heuristicName})</span>
+            </div>
+
+            <button
+              onClick={onClearSelectedHeuristic}
+              className="px-2.5 py-1 bg-indigo-900/80 hover:bg-indigo-800 text-indigo-300 hover:text-white rounded-lg text-xs transition cursor-pointer border border-indigo-700/60 flex items-center gap-1"
+            >
+              <X className="w-3 h-3" />
+              <span>Clear Focus</span>
+            </button>
           </div>
 
-          <button
-            onClick={onClearSelectedHeuristic}
-            className="px-2 py-1 bg-indigo-900/80 hover:bg-indigo-800 text-indigo-300 rounded text-xs transition cursor-pointer border border-indigo-700/60"
-          >
-            Clear Focus
-          </button>
+          {/* Side-by-Side Problem vs Solution preview pill boxes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-1 text-[11px]">
+            <div className="p-2.5 rounded-lg bg-rose-950/80 border border-rose-800/80 text-rose-100 flex items-start gap-2">
+              <span className="w-2 h-2 rounded-full bg-rose-500 mt-1 shrink-0"></span>
+              <div>
+                <strong className="text-rose-300 font-bold block mb-0.5">Left / Before Problem:</strong>
+                <p className="line-clamp-2 text-rose-100/90">{selectedHeuristic.problemTitle}</p>
+              </div>
+            </div>
+
+            <div className="p-2.5 rounded-lg bg-emerald-950/80 border border-emerald-800/80 text-emerald-100 flex items-start gap-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
+              <div>
+                <strong className="text-emerald-300 font-bold block mb-0.5">Right / Improved Solution:</strong>
+                <p className="line-clamp-2 text-emerald-100/90">{selectedHeuristic.improvedSolution}</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
