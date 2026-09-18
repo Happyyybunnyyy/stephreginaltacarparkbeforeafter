@@ -50,7 +50,7 @@ export const SummaryCards: React.FC<SummaryCardsProps> = ({
             <span className="text-yellow-600 font-bold">{minorCount} Minor</span>
           </div>
           <a
-            href="https://ltacarpark18sept-nv7j41k07-happyyybunnyyys-projects.vercel.app/"
+            href="https://ltacarpark18sept.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-rose-600 hover:text-rose-800 font-medium flex items-center gap-1"

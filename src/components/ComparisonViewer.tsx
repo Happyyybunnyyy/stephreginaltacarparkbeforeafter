@@ -121,7 +121,7 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="https://ltacarpark18sept-nv7j41k07-happyyybunnyyys-projects.vercel.app/"
+            href="https://ltacarpark18sept.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-rose-400 hover:underline flex items-center gap-1 font-mono text-[11px]"

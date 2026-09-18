@@ -106,7 +106,7 @@ export default function App() {
 
             <div className="mt-5 flex flex-wrap items-center gap-3 text-xs">
               <a
-                href="https://ltacarpark18sept-nv7j41k07-happyyybunnyyys-projects.vercel.app/"
+                href="https://ltacarpark18sept.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-800 transition"

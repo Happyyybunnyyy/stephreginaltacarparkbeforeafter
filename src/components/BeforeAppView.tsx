@@ -44,7 +44,7 @@ export const BeforeAppView: React.FC<BeforeAppViewProps> = ({
           <h2 className="font-bold text-base text-slate-100 mt-0.5">LTA Carpark Availability System</h2>
         </div>
         <a
-          href="https://ltacarpark18sept-nv7j41k07-happyyybunnyyys-projects.vercel.app/"
+          href="https://ltacarpark18sept.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs text-blue-300 hover:text-blue-100 flex items-center gap-1 bg-slate-700/80 px-2.5 py-1.5 rounded transition-colors"
