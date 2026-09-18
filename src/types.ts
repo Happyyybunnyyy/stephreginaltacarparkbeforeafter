@@ -33,3 +33,5 @@ export interface CarparkItem {
 }
 
 export type ViewMode = 'split' | 'before' | 'improved' | 'embed';
+
+export type ActiveTab = 'audit' | 'talk-to-us';
