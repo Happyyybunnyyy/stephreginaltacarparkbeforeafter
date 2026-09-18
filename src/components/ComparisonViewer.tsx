@@ -131,7 +131,7 @@ export const ComparisonViewer: React.FC<ComparisonViewerProps> = ({
           </a>
           <span className="text-slate-600">vs</span>
           <a
-            href="https://stephreginaltacarpark-5jn1k27qs-happyyybunnyyys-projects.vercel.app/"
+            href="https://stephreginaltacarparkbeforeafter.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-emerald-400 hover:underline flex items-center gap-1 font-mono text-[11px]"

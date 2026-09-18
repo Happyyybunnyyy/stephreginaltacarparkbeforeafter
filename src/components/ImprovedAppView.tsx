@@ -122,7 +122,7 @@ export const ImprovedAppView: React.FC<ImprovedAppViewProps> = ({
             </button>
           )}
           <a
-            href="https://stephreginaltacarpark-5jn1k27qs-happyyybunnyyys-projects.vercel.app/"
+            href="https://stephreginaltacarparkbeforeafter.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-indigo-200 hover:text-white flex items-center gap-1 bg-indigo-700/80 hover:bg-indigo-600 px-2.5 py-1.5 rounded transition shadow-sm"

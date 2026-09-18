@@ -84,7 +84,7 @@ export const SummaryCards: React.FC<SummaryCardsProps> = ({
             10 / 10 Criteria Satisfied
           </span>
           <a
-            href="https://stephreginaltacarpark-5jn1k27qs-happyyybunnyyys-projects.vercel.app/"
+            href="https://stephreginaltacarparkbeforeafter.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-emerald-600 hover:text-emerald-800 font-medium flex items-center gap-1"
