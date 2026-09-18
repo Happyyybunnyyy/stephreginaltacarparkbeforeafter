@@ -19,9 +19,9 @@ declare global {
 }
 
 // Fixed canonical values for Disqus configuration with real fixed values
-export const DISQUS_PAGE_URL = 'https://stephreginaltacarparkbeforeafter.vercel.app/#feel-free-your-thoughts';
-export const DISQUS_PAGE_IDENTIFIER = 'stephregina-ltacarpark-feel-free-your-thoughts';
-export const DISQUS_PAGE_TITLE = 'Feel free your thoughts - LTA Carpark Usability Comparison & Feedback';
+export const DISQUS_PAGE_URL = 'https://stephreginaltacarparkbeforeafter.vercel.app/#leave-your-comments';
+export const DISQUS_PAGE_IDENTIFIER = 'stephregina-ltacarpark-leave-your-comments';
+export const DISQUS_PAGE_TITLE = 'Leave your comments here! :) - LTA Carpark Usability Comparison & Feedback';
 
 export const FeelFreeYourThoughtsSection: React.FC = () => {
   const [isReloading, setIsReloading] = useState(false);
@@ -74,10 +74,10 @@ export const FeelFreeYourThoughtsSection: React.FC = () => {
 
   return (
     <section
-      id="feel-free-your-thoughts"
+      id="leave-your-comments"
       className="scroll-mt-24 pt-10 pb-6 space-y-6 border-t-2 border-slate-200/80"
     >
-      {/* Lowest bottom banner: Feel free your thoughts */}
+      {/* Lowest bottom banner: Leave your comments here! :) */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
         <div className="max-w-3xl relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 mb-3">
@@ -86,7 +86,7 @@ export const FeelFreeYourThoughtsSection: React.FC = () => {
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-3">
-            <span>Feel free your thoughts</span>
+            <span>Leave your comments here! :)</span>
             <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-md bg-white/10 text-slate-300 border border-white/15">
               Disqus
             </span>

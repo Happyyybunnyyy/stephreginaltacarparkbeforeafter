@@ -106,7 +106,7 @@ export default function App() {
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition cursor-pointer shadow-xs"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              <span>Feel free your thoughts</span>
+              <span>Leave your comments here! :)</span>
             </button>
             <button
               onClick={() => setIsLegendOpen(true)}
@@ -163,7 +163,7 @@ export default function App() {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition cursor-pointer shadow-xs"
               >
                 <MessageSquare className="w-3 h-3 text-indigo-200" />
-                <span>Feel free your thoughts</span>
+                <span>Leave your comments here! :)</span>
               </button>
             </div>
           </div>
@@ -263,7 +263,7 @@ export default function App() {
               onClick={scrollToThoughts}
               className="hover:text-indigo-600 transition cursor-pointer text-indigo-600 font-bold"
             >
-              Feel free your thoughts
+              Leave your comments here! :)
             </button>
             <span>·</span>
             <button
