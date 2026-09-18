@@ -1,0 +1,6 @@
+{
+  "name": "LTA Carpark Usability Comparison",
+  "description": "Heuristic usability evaluation and interactive side-by-side comparison between the original and improved LTA Carpark apps across 10 usability heuristics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
